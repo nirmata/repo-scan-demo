@@ -1,0 +1,43 @@
+name: NCTL Scan Pipeline Demo
+run-name: ${{ github.actor }} has triggered Scan Action 🚀
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "main"
+
+env:
+  NIRMATA_TOKEN: ${{ secrets.NIRMATA_TOKEN }}
+  NIRMATA_URL: ${{ secrets.NIRMATA_URL }}
+
+
+jobs:
+  NCTL-Scan-Repository:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: Check out main repository code
+        uses: actions/checkout@v4
+
+      - name: NCTL-scan-installer - Terraform
+        uses: supplypike/setup-bin@v4
+        with:
+          uri: 'https://nirmata-downloads.s3.us-east-2.amazonaws.com/nctl/nctl_4.1.2/nctl_4.1.2_linux_386.zip'
+          name: 'nctl'
+          version: '4.1.2'
+
+      - name: Check nctl version
+        run: |
+          nctl version
+
+      - name: nctl login
+        run: nctl login --url $NIRMATA_URL --userid anusha.hegde@nirmata.com --token $NIRMATA_TOKEN
+
+      - name: NCTL Scan Repository
+        run: |
+          nctl scan repository --policies policy/  --publish-token $NIRMATA_TOKEN
+  
+      - run: echo "🍏 This job's status is ${{ job.status }}."
