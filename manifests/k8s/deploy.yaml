@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -14,12 +14,27 @@ spec:
       labels:
         app: nginx
     spec:
-      hostPID: true
       hostIPC: true
+      hostPID: true
       hostNetwork: true
       containers:
       - name: nginx
         image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-
+        securityContext:
+          privileged: true
+          procMount: "/tmp/proc"
+          allowPrivilegeEscalation: true
+          windowsOptions:
+            hostProcess: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      volumes:
+      - name: test-vol
+        hostPath:
+          path: /tmp
+          type: Directory
