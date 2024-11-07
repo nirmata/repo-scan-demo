@@ -14,7 +14,7 @@ spec:
       labels:
         app: nginx
     spec:
-      automountServiceAccountToken: false
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         seccompProfile:
