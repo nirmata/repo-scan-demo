@@ -34,6 +34,6 @@ jobs:
 
       - name: NCTL Scan Repository
         run: |
-          nctl scan repository --policies policies/  --publish-token $NIRMATA_TOKEN
+          nctl scan repository --policy-sets pss-baseline,pss-restricted,dockerfile-best-practices  --publish-token $NIRMATA_TOKEN
   
       - run: echo "🍏 This job's status is ${{ job.status }}."
