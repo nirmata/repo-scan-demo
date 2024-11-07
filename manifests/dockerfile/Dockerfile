@@ -16,6 +16,9 @@ ENV NODE_TLS_REJECT_UNAUTHORIZED=1
 
 COPY --from=builder /main /main
 
-LABEL MAINTAINER="Nirmata"
+LABEL maintainer="Nirmata"
+USER  myuser
+
+HEALTHCHECK CMD curl --fail http://localhost:80 || exit 1
 
 ENTRYPOINT ["/main"]
