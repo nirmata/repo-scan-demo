@@ -23,7 +23,7 @@ spec:
       - name: nginx
         image: nginx:1.14.2
         securityContext:
-          allowPrivilegeEscalation: true
+          allowPrivilegeEscalation: false
           capabilities:
             drop:
               - ALL
