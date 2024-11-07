@@ -22,8 +22,15 @@ jobs:
       - name: Check out main repository code
         uses: actions/checkout@v4
 
-      - name: Install nctl
-        uses: nirmata/action-install-nctl-scan@v0.0.9
+      # - name: Install nctl
+      #   uses: nirmata/action-install-nctl-scan@v0.0.9
+
+      - name: nctl-scan-installer
+        uses: supplypike/setup-bin@v4
+        with:
+          uri: https://dl.nirmata.io/nctl/nctl_4.2.3/nctl_4.2.3_linux_386.zip
+          name: 'nctl'
+          version: '4.2.3'
 
       - name: Check nctl version
         run: |
