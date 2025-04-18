@@ -19,5 +19,5 @@ spec:
       - name: nginx
         image: nginx:1.14.2
         securityContext:
-          privileged: true
+          privileged: false # Changed from true to false to comply with security policy
           allowPrivilegeEscalation: true
