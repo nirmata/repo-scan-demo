@@ -20,4 +20,3 @@ spec:
         image: nginx:1.14.2
         securityContext:
           privileged: true
-          allowPrivilegeEscalation: true
