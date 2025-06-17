@@ -33,9 +33,6 @@ spec:
           privileged: false
           runAsUser: 1000
           runAsGroup: 1000
-          capabilities:
-            drop:
-              - ALL
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       dnsPolicy: ClusterFirst
