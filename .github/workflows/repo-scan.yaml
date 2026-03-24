@@ -20,7 +20,7 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
       - name: Checkout PR branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # v3
         with:
           # Checks out the repository linked to the PR
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -31,7 +31,7 @@ jobs:
       #   uses: nirmata/action-install-nctl-scan@v0.0.9
 
       - name: nctl-scan-installer
-        uses: supplypike/setup-bin@v4
+        uses: supplypike/setup-bin@8e3f88b4f143d9b5c3497f0fc12d45c83c123787  # v4
         with:
           uri: https://dl.nirmata.io/nctl/nctl_4.3.4/nctl_4.3.4_linux_386.zip
           name: 'nctl'
